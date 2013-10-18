@@ -2,19 +2,18 @@
   (:require [simple-authentication.bcrypt :as bcrypt]
             [ring.util.response :as response]))
 
+(defn- request-matches-uri-and-method? [uri method request]
+  "Returns true if the request goes to the uri and the request method matches the request's method."
+  (and (= uri (:uri request))
+       (= method (:request-method request))))
+
 (defn- login-request? [login-uri request]
   "Returns true if the request goes to the login-url and the request method is POST."
-  (and (= login-uri
-          (:uri request))
-       (= (:request-method request)
-          :post)))
+  (request-matches-uri-and-method? login-uri :post request))
 
 (defn- logout-request? [logout-uri request]
   "Returns true if the request goes to the logout-url and the request method is POST."
-  (and (= logout-uri
-          (:uri request))
-       (= (:request-method request)
-          :post)))
+  (request-matches-uri-and-method? logout-uri :post request))
 
 (defn- handle-login [login-uri login-success-uri query-fn {{:keys [login password]} :params}]
   "Query for the user with the query-fn. If the credentials match then return a response with a redirect to the login-success-uri with the user stored in the session map with the password removed. Otherwise redirect to the login-uri."
