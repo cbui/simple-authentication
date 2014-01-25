@@ -4,5 +4,5 @@
 
 (deftest password
   (is (= true
-         (check-password "password"
-          (hash-password "password")))))
+         (plain-text-matches-hashed? "password"
+                                     (hash-password "password")))))
