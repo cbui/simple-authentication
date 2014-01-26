@@ -63,3 +63,15 @@ to the logout-success-uri"
      (handle-logout logout-success-uri request)
      :else (handler request))))
 
+(defn login-required [{login-uri :login-uri} handler]
+  "Middleware that redirects to the login-uri for the handler if the user is not loggedin.
+
+Example usage: (login-required {:login-uri \"/login\"} submissions/login-required-routes)
+
+A good pattern is using partial like so: (def login-required (partial simple-auth/login-required {:login-uri \"/login\"}))
+
+That way you don't have to explicity pass in the login uri every time."
+  (fn [request]
+    (if-not (empty? (:session request))
+      (handler request)
+      (response/redirect login-uri))))
