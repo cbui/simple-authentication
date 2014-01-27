@@ -1,4 +1,4 @@
-(defproject com.cbui/simple-authentication "0.1.1"
+(defproject com.cbui/simple-authentication "0.1.3"
   :description "Simple authentication for Ring web applications."
   :url "https://github.com/Christopher-Bui/simple-authentication"
   :license {:name "Eclipse Public License"
