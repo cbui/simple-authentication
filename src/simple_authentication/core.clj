@@ -3,7 +3,7 @@
             [ring.util.response :as response]))
 
 (defn- request-matches-uri-and-method? [uri method request]
-  "Returns true if the request goes to the uri and the reqoneuest
+  "Returns true if the request goes to the uri and the request
 method matches the request's method."
   (and (= uri (:uri request))
        (= method (:request-method request))))
