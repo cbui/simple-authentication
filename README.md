@@ -77,7 +77,7 @@ First, you're going to want to define your app's routes. Then you apply the midd
 `:login-success-uri` is the uri that your login form is going to redirect to when a successful login occurs.
 `:logout-uri` is the uri that logs the user out when they visit it.
 `:logout-success-uri` is the uri that the logged out user is redirect to after they're logged out.
-`:query-fn` is the function that querys your data store and returns a map that contains a :password key with the user's bcrypted password. The function that checks if the password matches the form submitted password returns the map without the password key.
+`:query-fn` is the function that querys your data store and returns a map that contains a :password key with the user's bcrypted password. The function that checks if the password matches the form submitted password returns the map without the password key. It gets called with the login that was submitted by the form.
 
 When you store passwords in the database or somewhere, you're going to want to use the hash-password function in the bcrypt namespace.
 
