@@ -10,18 +10,20 @@ I based it off of friend a bit so the usage is a little similar.
 
 Here's a sample project that does login simply:
 
-    ;; project.clj
-    (defproject simple-login "0.1.0-SNAPSHOT"
-        :description "A simple application to show the simple-authentication library."
-        :license {:name "Eclipse Public License"
-                  :url "http://www.eclipse.org/legal/epl-v10.html"}
-        :dependencies [[org.clojure/clojure "1.5.1"]
-                       [com.christopherdbui/simple-authentication "0.1.4"]
-                       [hiccup "1.0.4"]                 
-                       [compojure "1.1.5"]
-                       [http-kit "2.1.5"]])
+```clojure
+;; project.clj
+(defproject simple-login "0.1.0-SNAPSHOT"
+    :description "A simple application to show the simple-authentication library."
+    :license {:name "Eclipse Public License"
+              :url "http://www.eclipse.org/legal/epl-v10.html"}
+    :dependencies [[org.clojure/clojure "1.5.1"]
+                   [com.christopherdbui/simple-authentication "0.1.4"]
+                   [hiccup "1.0.4"]                 
+                   [compojure "1.1.5"]
+                   [http-kit "2.1.5"]])
+```
          
-```              
+```clojure
 ;; src/simple_login/core.clj
 (ns simple-login.core
   (:require [compojure.core :as compojure]
