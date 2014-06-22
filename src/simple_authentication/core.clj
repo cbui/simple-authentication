@@ -38,7 +38,7 @@ response with the session set to nil."
   (let [response (response/redirect logout-success-uri)]
     (assoc response :session nil)))
 
-(defn authentication [handler {:keys [login-uri login-success-uri logout-uri logout-success-uri query-fn]}]
+(defn wrap-auth [handler {:keys [login-uri login-success-uri logout-uri logout-success-uri query-fn]}]
   "Middleware for handling all authentication requests. When it is a
 login request, it calls the query-fn with the login passed in from
 the form.
