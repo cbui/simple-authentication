@@ -71,8 +71,24 @@ simple-auth/login-required {:login-uri \"/login\"}))
 
 That way you don't have to explicity pass in the login uri every time."
   (fn [request]
-    (let [response (handler request)]
-      (if (and (empty? (:session request))
-               response)
+    (if-let [response (handler request)]
+      (if (empty? (:session request))
         (response/redirect login-uri)
+        response))))
+
+(defn logout-required [{redirect-uri :redirect-uri} handler]
+  "Middleware that redirects to the redirect-uri for the handler if the
+user is logged in.
+
+Example usage: (logout-required {:redirect-uri \"/\"}
+authentication/auth-routes)
+
+A good pattern is using partial like so: (def logout-required (partial
+authentication/auth-routes {:redirect-uri \"/\"}))
+
+That way you don't have to explicity pass in the redirect uri every time."
+  (fn [request]
+    (if-let [response (handler request)]
+      (if (not (empty? (:session request)))
+        (response/redirect redirect-uri)
         response))))
